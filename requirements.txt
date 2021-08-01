@@ -30,3 +30,5 @@ Werkzeug==1.0.1
 wincertstore==0.2
 xgboost>=0.6a2
 xlrd==1.2.0
+sklearn==0.23.1
+catboost==0.23.2
