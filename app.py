@@ -12,13 +12,11 @@ showPredictions = None
 
 @app.route('/')
 def home():
-    return render_template("/static/index.html", showPredictions=None)
+    return render_template("index.html", showPredictions=None)
 
 
 @app.route('/predict', methods=['GET'])
 def predict():
-
-    # TODO: add all required params
     input = {
         'Age': request.args['Age'],
         'Fare': request.args['Fare'],
@@ -34,8 +32,10 @@ def predict():
     input = pd.DataFrame.from_dict(input, orient='index').T
 
     response = model_.predict(input)
+    
+    print('RESPUESTA', response[0])
 
-    ## Console response
-    print('RESPUESTA:', response)
-
-    return(response)
+    if response[0] == 1.0:
+        return jsonify({'result': 'Felicidades, sobrevivirias al Titanic'})
+    else:
+        return jsonify({'result': 'Lo lamentamos, no hubieras sobrevivido al titanic'})
