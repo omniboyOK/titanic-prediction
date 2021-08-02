@@ -32,10 +32,14 @@ def predict():
     input = pd.DataFrame.from_dict(input, orient='index').T
 
     response = model_.predict(input)
-    
+
     print('RESPUESTA', response[0])
 
     if response[0] == 1.0:
         return jsonify({'result': 'Felicidades, sobrevivirias al Titanic'})
     else:
         return jsonify({'result': 'Lo lamentamos, no hubieras sobrevivido al titanic'})
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
