@@ -10,6 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,51 +20,70 @@
     <![endif]-->
 </head>
 
-<body>
-    <div class="container mt-5">
+<body class="bg-warning">
+    <main class="container pt-4 pb-4 mb-5 bg-white rounded-bottom">
         <div class="row justify-content-center">
-            <div class="col-6">
-                <h2 class="mb-3">Bienvenido al Titanic!</h2>
-                <h2 class="mb-3">Ingresa tus datos</h2>
+            <div class="col-lg-6 align-self-center">
+                <h1 class="mb-3">Bienvenido/a al Titanic!</h1>
+                <h3 class="mb-3">Ingresa tus datos</h3>
                 <form action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value)">
-                    <div class="form-group">
+                    <div class="form-group mb-2">
                         <label for="exampleInputEmail1">Edad</label>
                         <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
                             placeholder="Ingresa tu edad" required>
-                        <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias en tu viaje en el
-                            titanic</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tarifa</label>
-                        <input type="number" max="512" min="0" class="form-control" id="fare" aria-describedby="ageHelp"
-                            placeholder="Ingresa un valor entre 0 y 512" required>
-                        <small id="ageHelp" class="form-text text-muted">Ingresa la tarija que hubieras pagado de
+                        <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias al comprar el
                             boleto</small>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Padres/hijos</label>
+                    <div class="form-group mb-2">
+                        <label for="exampleInputEmail1">Tarifa</label>
+                        <input type="number" max="512" min="0" class="form-control" id="fare" aria-describedby="ageHelp"
+                            placeholder="Ingresa un valor entre 0 y 512 (libras)" required>
+                        <small id="ageHelp" class="form-text text-muted">Ingresa la tarija que hubieras pagado por el
+                            boleto</small>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="exampleInputEmail1">Padres/Hijos</label>
                         <input type="number" min="0" max="9" class="form-control" id="parch"
                             aria-describedby="parchHelp" placeholder="Ingresa un numero del 0 al 9" required>
-                        <small id="parchHelp" class="form-text text-muted">Ingresa la cantidad de parientes que
-                            viajarian
-                            contigo</small>
+                        <small id="parchHelp" class="form-text text-muted">Ingresa la cantidad de parientes que te
+                            acompañarian</small>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Hermanos/Prometidos</label>
+                    <div class="form-group mb-2">
+                        <label for="exampleInputEmail1">Hermanos/Pareja</label>
                         <input type="number" min="0" max="8" class="form-control" id="sibSp"
                             aria-describedby="sibspHelp" placeholder="Ingresa un numero del 0 al 8" required>
-                        <small id="sibspHelp" class="form-text text-muted">Ingresa la cantidad de hermanos o
-                            prometidos</small>
+                        <small id="sibspHelp" class="form-text text-muted">Ingresa otro tipo de acompañantes</small>
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
                 </form>
-                <div class="mt-5">
-                    <h2 id="result"></h2>
+                <div class="card mt-3 mb-5 d-none text-white" id="cardresult">
+                    <div class="card-header">
+                        El resultado de tu viaje fue...
+                    </div>
+                    <div class="card-body">
+                        <h2 id="result"></h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center m-4 d-none" id="loader">
+                    <div class="spinner-grow text-primary m-1" role="status">
+                    </div>
+                    <div class="spinner-grow text-primary m-1" role="status">
+                    </div>
+                    <div class="spinner-grow text-primary m-1" role="status">
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
+    </main>
+    <footer class="text-center footer bg-primary">
+        <div class="container">
+            <span class="text-white align-middle">Formulario hecho por
+                <a href="https://github.com/omniboyOK">Omniboy</a> /
+                Modelo predictivo hecho por
+                <a href="https://github.com/Mattzvl">Mattzvl</a>
+            </span>
+        </div>
+    </footer>
 
     <script src="../static/form.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

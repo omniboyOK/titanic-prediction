@@ -1,9 +1,26 @@
 function handleSubmit(age, fare, parch, sibSp) {
+  // show loader
+  let loader = document.getElementById("loader");
+  loader.classList.remove("d-none");
+
   fetch(`/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}`)
     .then((response) => response.json())
     .then((data) => {
+      // remove loader
+      loader.classList.add("d-none");
+
+      // show result card
+      let card = document.getElementById("cardresult");
+      card.classList.remove("d-none");
+      data.survived
+        ? card.classList.add("bg-success")
+        : card.classList.add("bg-error");
+
+      // set result text
       let result_text = document.getElementById("result");
       result_text.innerText = data.result;
+
+      window.scrollTo(0, document.querySelector(".container").scrollHeight);
     })
     .catch((error) => {
       console.log(error);
