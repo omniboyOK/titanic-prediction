@@ -1,9 +1,9 @@
-function handleSubmit(age, fare, parch, sibSp) {
+function handleSubmit(age, fare, parch, sibSp, Sex_male) {
   // show loader
   let loader = document.getElementById("loader");
   loader.classList.remove("d-none");
 
-  fetch(`/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}`)
+  fetch(`/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${Sex_male}`)
     .then((response) => response.json())
     .then((data) => {
       // remove loader
