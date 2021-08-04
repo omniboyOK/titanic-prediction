@@ -30,8 +30,11 @@ def predict():
         'Embarked_S': 0,
         'Pclass_2': 0,
         'Pclass_3': 0,
-        'Sex_male': request.args['Sex_male']
+        'Sex_male': request.args['Sex_male'],
+        'Embarked': 'Q', 
+        'Class' : 'Tercera'
     }
+    # request.args['Embarked'], no me toma esto cuando lo escribo :/
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
@@ -40,10 +43,13 @@ def predict():
     model_scaler.clip = False
     input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(
         input.iloc[:, [0, 1, 2, 3]])
-    # hasta poder reparar lo del genero 1:Masculino 0:Femenino
-    input.iloc[:, 8] = 1
-    print(input.Sex_male)
+    input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked'] ]
+    input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked'] ]
+    input['Pclass_2'] = [1 if x == 'Segunda' else 0 for x in input['Class'] ]
+    input['Pclass_3'] = [1 if x == 'Tercera' else 0 for x in input['Class'] ]
     print(input)
+    input.drop(['Embarked','Class'], axis=1, inplace = True)
+
     response = model.predict(input)
 
     # print('RESPUESTA', response[0], )

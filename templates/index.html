@@ -26,7 +26,7 @@
             <div class="col-lg-6 align-self-center">
                 <h1 class="mb-3">Bienvenido/a al Titanic!</h1>
                 <h3 class="mb-3">Ingresa tus datos</h3>
-                <form action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value, Sex_male.value)" class="w-50">
+                <form action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value, Sex_male.value, embarked.value)" class="w-50">
                     <div class="form-group mb-2">
                         <label for="age">Edad</label>
                         <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
@@ -63,6 +63,17 @@
                             </select>
                         </div>
                         <small id="sex_maleHelp" class="form-text text-muted">Ingresa tu Genero</small>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="embarked">Puerto de Embarco</label>
+                        <div>
+                            <select class="select form-control" id="embarked">
+                                <option value="C" selected>Cherbourg</option>
+                                <option value="S">Queenstown</option>
+                                <option value="Q">Southampton</option>
+                            </select>
+                        </div>
+                        <small id="embarkedHelp" class="form-text text-muted">Selecciona el puerto de Embarco</small>
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
                 </form>
