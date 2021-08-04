@@ -20,6 +20,7 @@ def home():
 
 @app.route('/predict', methods=['GET'])
 def predict():
+
     input = {
         'Age': request.args['Age'],
         'Fare': request.args['Fare'],
@@ -29,23 +30,23 @@ def predict():
         'Embarked_S': 0,
         'Pclass_2': 0,
         'Pclass_3': 0,
-        'Sex_male': 0
+        'Sex_male': request.args['Sex_male']
     }
-    
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
-    #import joblib
+    # import joblib
     from sklearn.preprocessing import MinMaxScaler
     model_scaler.clip = False
-    input.iloc[:,[0,1,2,3]] = model_scaler.transform(input.iloc[:,[0,1,2,3]])
-    input.iloc[:,8] = 1 # hasta poder reparar lo del genero 1:Masculino 0:Femenino
+    input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(
+        input.iloc[:, [0, 1, 2, 3]])
+    # hasta poder reparar lo del genero 1:Masculino 0:Femenino
+    input.iloc[:, 8] = 1
     print(input.Sex_male)
     print(input)
     response = model.predict(input)
 
-
-    print('RESPUESTA', response[0], )
+    # print('RESPUESTA', response[0], )
 
     if response[0] == 1.0:
         return jsonify({'result': 'Felicidades, sobrevivirias al Titanic', "survived": True})

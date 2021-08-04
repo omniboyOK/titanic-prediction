@@ -3,7 +3,9 @@ function handleSubmit(age, fare, parch, sibSp, Sex_male) {
   let loader = document.getElementById("loader");
   loader.classList.remove("d-none");
 
-  fetch(`/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${Sex_male}`)
+  fetch(
+    `/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${Sex_male}`
+  )
     .then((response) => response.json())
     .then((data) => {
       // remove loader
@@ -11,10 +13,13 @@ function handleSubmit(age, fare, parch, sibSp, Sex_male) {
 
       // show result card
       let card = document.getElementById("cardresult");
+      // remove old styles
+      card.classList.remove("bg-success");
+      card.classList.remove("bg-danger");
       card.classList.remove("d-none");
       data.survived
         ? card.classList.add("bg-success")
-        : card.classList.add("bg-error");
+        : card.classList.add("bg-danger");
 
       // set result text
       let result_text = document.getElementById("result");

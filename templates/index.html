@@ -26,38 +26,42 @@
             <div class="col-lg-6 align-self-center">
                 <h1 class="mb-3">Bienvenido/a al Titanic!</h1>
                 <h3 class="mb-3">Ingresa tus datos</h3>
-                <form action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value, Sex_male.value)">
+                <form action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value, Sex_male.value)" class="w-50">
                     <div class="form-group mb-2">
-                        <label for="exampleInputEmail1">Edad</label>
+                        <label for="age">Edad</label>
                         <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
                             placeholder="Ingresa tu edad" required>
                         <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias al comprar el
                             boleto</small>
                     </div>
                     <div class="form-group mb-2">
-                        <label for="exampleInputEmail1">Tarifa</label>
-                        <input type="number" max="512" min="0" class="form-control" id="fare" aria-describedby="fareHelp"
-                            placeholder="Ingresa un valor entre 0 y 512 (libras)" required>
+                        <label for="fare">Tarifa</label>
+                        <input type="number" max="512" min="0" class="form-control" id="fare"
+                            aria-describedby="fareHelp" placeholder="Ingresa un valor entre 0 y 512 (libras)" required>
                         <small id="fareHelp" class="form-text text-muted">Ingresa la tarija que hubieras pagado por el
                             boleto</small>
                     </div>
                     <div class="form-group mb-2">
-                        <label for="exampleInputEmail1">Padres/Hijos</label>
+                        <label for="parch">Padres/Hijos</label>
                         <input type="number" min="0" max="9" class="form-control" id="parch"
                             aria-describedby="parchHelp" placeholder="Ingresa un numero del 0 al 9" required>
                         <small id="parchHelp" class="form-text text-muted">Ingresa la cantidad de parientes que te
                             acompañarian</small>
                     </div>
                     <div class="form-group mb-2">
-                        <label for="exampleInputEmail1">Hermanos/Pareja</label>
+                        <label for="sibSp">Hermanos/Pareja</label>
                         <input type="number" min="0" max="8" class="form-control" id="sibSp"
                             aria-describedby="sibspHelp" placeholder="Ingresa un numero del 0 al 8" required>
                         <small id="sibspHelp" class="form-text text-muted">Ingresa otro tipo de acompañantes</small>
                     </div>
                     <div class="form-group mb-2">
-                        <label for="exampleInputEmail1">Genero</label>
-                        <input type="text" class="form-control" id="Sex_male"
-                            aria-describedby="sex_maleHelp" placeholder="Ingresa M para masculino, F para Femenino" required>
+                        <label for="Sex_male">Genero</label>
+                        <div>
+                            <select class="select form-control" id="Sex_male">
+                                <option value="0" selected>Mujer</option>
+                                <option value="1">Hombre</option>
+                            </select>
+                        </div>
                         <small id="sex_maleHelp" class="form-text text-muted">Ingresa tu Genero</small>
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
