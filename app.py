@@ -35,6 +35,7 @@ def predict():
         'Class' : 'Tercera'
     }
     # request.args['Embarked'], no me toma esto cuando lo escribo :/
+    # request.args['Class'], pasa lo mismo que el caso anterior, de especificarlo no me lo toma 
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
@@ -54,11 +55,13 @@ def predict():
 
     # print('RESPUESTA', response[0], )
 
+    chance = model.predict_proba( input )
+    print('Probabilidad de sobrevivir' , chance[0][1] ) #para añadir la probabilidad de supervivencia
+
     if response[0] == 1.0:
         return jsonify({'result': 'Felicidades, sobrevivirias al Titanic', "survived": True})
     else:
         return jsonify({'result': 'Lo lamentamos, no hubieras sobrevivido al titanic', "survived": False})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
