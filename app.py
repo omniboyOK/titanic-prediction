@@ -3,10 +3,10 @@ import pandas as pd
 from flask import Flask, request, jsonify, render_template
 import pickle
 # modelo predictor
-with open('./titanic.pkl', 'rb') as modelo_pkl:
+with open('./models/titanic.pkl', 'rb') as modelo_pkl:
     model = pickle.load(modelo_pkl)
 # scalador
-with open('./titanic_scaler.pkl', 'rb') as modelo_pkl:
+with open('./models/titanic_scaler.pkl', 'rb') as modelo_pkl:
     model_scaler = pickle.load(modelo_pkl)
 
 app = Flask('app')
