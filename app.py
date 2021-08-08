@@ -31,11 +31,9 @@ def predict():
         'Pclass_2': 0,
         'Pclass_3': 0,
         'Sex_male': request.args['Sex_male'],
-        'Embarked': 'Q',
-        'Class': 'Tercera'
+        'Embarked': request.args['Embarked'],
+        'Class': request.args['Class']
     }
-    # request.args['Embarked'], no me toma esto cuando lo escribo :/
-    # request.args['Class'], pasa lo mismo que el caso anterior, de especificarlo no me lo toma
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
