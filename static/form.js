@@ -1,10 +1,10 @@
-function handleSubmit(age, fare, parch, sibSp, Sex_male, embarked, clase) {
+function handleSubmit(age, fare, parch, sibSp, sex_male, embarked, clase) {
   // show loader
   let loader = document.getElementById("loader");
   loader.classList.remove("d-none");
 
   fetch(
-    `/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${Sex_male}&Embarked=${embarked}&Class=${clase}`
+    `/predict?Age=${age}&Fare=${fare}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${sex_male}&Embarked=${embarked}&Class=${clase}`
   )
     .then((response) => response.json())
     .then((data) => {
