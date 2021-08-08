@@ -12,10 +12,54 @@ with open('./models/titanic_scaler.pkl', 'rb') as modelo_pkl:
 app = Flask('app')
 showPredictions = None
 
+clases = [
+    {
+        'clase': 1,
+        'cabinas': [
+            {'tipo': 'A', 'valor': 20},
+            {'tipo': 'B', 'valor': 20},
+            {'tipo': 'C', 'valor': 20},
+            {'tipo': 'D', 'valor': 20},
+            {'tipo': 'E', 'valor': 20},
+            {'tipo': 'F', 'valor': 20},
+            {'tipo': 'G', 'valor': 20}
+        ]
+    },
+    {
+        'clase': 2,
+        'cabinas': [
+            {'tipo': 'A', 'valor': 20},
+            {'tipo': 'B', 'valor': 20},
+            {'tipo': 'C', 'valor': 20},
+            {'tipo': 'D', 'valor': 20},
+            {'tipo': 'E', 'valor': 20},
+            {'tipo': 'F', 'valor': 20},
+            {'tipo': 'G', 'valor': 20}
+        ]
+    },
+    {
+        'clase': 3,
+        'cabinas': [
+            {'tipo': 'A', 'valor': 20},
+            {'tipo': 'B', 'valor': 20},
+            {'tipo': 'C', 'valor': 20},
+            {'tipo': 'D', 'valor': 20},
+            {'tipo': 'E', 'valor': 20},
+            {'tipo': 'F', 'valor': 20},
+            {'tipo': 'G', 'valor': 20}
+        ]
+    }
+]
+
 
 @app.route('/')
 def home():
     return render_template("index.html", showPredictions=None)
+
+
+@app.route('/classes')
+def get_classes():
+    return jsonify(clases)
 
 
 @app.route('/predict', methods=['GET'])
