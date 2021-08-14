@@ -21,75 +21,82 @@
 </head>
 
 <body class="bg-warning">
-    <main class="container pt-4 pb-4 mb-5 bg-white rounded-bottom">
-        <div class="row justify-content-center">
+    <main class="container pt-4 pb-4 bg-white rounded-bottom">
+        <div class="row justify-content-center mb-3">
             <div class="col-lg-6 align-self-center">
                 <h1 class="mb-3">Bienvenido/a al Titanic!</h1>
                 <h3 class="mb-3">Ingresa tus datos</h3>
                 <form
-                    action="javascript:handleSubmit(age.value, fare.value, parch.value, sibSp.value, sex_male.value, embarked.value, clase.value)"
-                    class="w-50">
-                    <div class="form-group mb-2">
-                        <label for="age">Edad</label>
-                        <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
-                            placeholder="Ingresa tu edad" required>
-                        <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias al comprar el
-                            boleto</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="fare">Tarifa</label>
-                        <input type="number" max="512" min="0" class="form-control" id="fare"
-                            aria-describedby="fareHelp" placeholder="Ingresa un valor entre 0 y 512 (libras)" required>
-                        <small id="fareHelp" class="form-text text-muted">Ingresa la tarija que hubieras pagado por el
-                            boleto</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="parch">Padres/Hijos</label>
-                        <input type="number" min="0" max="9" class="form-control" id="parch"
-                            aria-describedby="parchHelp" placeholder="Ingresa un numero del 0 al 9" required>
-                        <small id="parchHelp" class="form-text text-muted">Ingresa la cantidad de parientes que te
-                            acompañarian</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="sibSp">Hermanos/Pareja</label>
-                        <input type="number" min="0" max="8" class="form-control" id="sibSp"
-                            aria-describedby="sibspHelp" placeholder="Ingresa un numero del 0 al 8" required>
-                        <small id="sibspHelp" class="form-text text-muted">Ingresa otro tipo de acompañantes</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="Sex_male">Genero</label>
-                        <div>
-                            <select class="select form-control" id="sex_male">
-                                <option value="0" selected>Mujer</option>
-                                <option value="1">Hombre</option>
-                            </select>
+                    action="javascript:handleSubmit(age.value, parch.value, sibSp.value, sex_male.value, embarked.value, clase.value)">
+                    <div class="row">
+                        <!-- First Form Column -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label for="age">Edad</label>
+                                <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
+                                    placeholder="Ingresa tu edad" required>
+                                <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias al comprar
+                                    el
+                                    boleto</small>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="parch">Padres/Hijos</label>
+                                <input type="number" min="0" max="9" class="form-control" id="parch"
+                                    aria-describedby="parchHelp" placeholder="Ingresa un numero del 0 al 9" required>
+                                <small id="parchHelp" class="form-text text-muted">Ingresa los familiares directos como
+                                    acompañantes</small>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sibSp">Hermanos/Pareja</label>
+                                <input type="number" min="0" max="8" class="form-control" id="sibSp"
+                                    aria-describedby="sibspHelp" placeholder="Ingresa un numero del 0 al 8" required>
+                                <small id="sibspHelp" class="form-text text-muted">Ingresa otro tipo de
+                                    acompañantes</small>
+                            </div>
                         </div>
-                        <small id="sex_maleHelp" class="form-text text-muted">Ingresa tu Genero</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="embarked">Puerto de Embarco</label>
-                        <div>
-                            <select class="select form-control" id="embarked">
-                                <option value="C" selected>Cherbourg</option>
-                                <option value="S">Queenstown</option>
-                                <option value="Q">Southampton</option>
-                            </select>
+                        <!-- End First Form Column -->
+                        
+                        <!-- Second Form Column -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label for="Sex_male">Genero</label>
+                                <div>
+                                    <select class="select form-control" id="sex_male">
+                                        <option value="0" selected>Mujer</option>
+                                        <option value="1">Hombre</option>
+                                    </select>
+                                </div>
+                                <small id="sex_maleHelp" class="form-text text-muted">Selecciona tu sexo</small>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="embarked">Puerto de Embarco</label>
+                                <div>
+                                    <select class="select form-control" id="embarked">
+                                        <option value="C" selected>Cherbourg</option>
+                                        <option value="S">Queenstown</option>
+                                        <option value="Q">Southampton</option>
+                                    </select>
+                                </div>
+                                <small id="embarkedHelp" class="form-text text-muted">Selecciona el puerto de
+                                    Embarco</small>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="clase">Clase</label>
+                                <div>
+                                    <select class="select form-control" id="clase">
+                                        <option value="" selected></option>
+                                    </select>
+                                </div>
+                                <small id="claseHelp" class="form-text text-muted">Selecciona la categoria del
+                                    viaje</small>
+                            </div>
                         </div>
-                        <small id="embarkedHelp" class="form-text text-muted">Selecciona el puerto de Embarco</small>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="clase">Clase</label>
-                        <div>
-                            <select class="select form-control" id="clase">
-                                <option value="Primera" selected>Primera Clase</option>
-                                <option value="Segunda">Segunda Clase</option>
-                                <option value="Tercera">Tercera Clase</option>
-                            </select>
-                        </div>
-                        <small id="claseHelp" class="form-text text-muted">Selecciona la categoria del viaje</small>
+                        <!-- End Second Form Column -->
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
                 </form>
+
+                <!-- Result Section -->
                 <div class="card mt-3 mb-5 d-none text-white" id="cardresult">
                     <div class="card-header">
                         El resultado de tu viaje fue...
@@ -119,9 +126,10 @@
         </div>
     </footer>
 
-    <script src="../static/form.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../static/js/bootstrap.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="../static/form.js"></script>
 </body>

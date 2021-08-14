@@ -15,6 +15,7 @@ showPredictions = None
 clases = [
     {
         'clase': 1,
+        'descripcion': 'Primera Clase',
         'cabinas': [
             {'tipo': 'A', 'valor': 20},
             {'tipo': 'B', 'valor': 20},
@@ -27,6 +28,7 @@ clases = [
     },
     {
         'clase': 2,
+        'descripcion': 'Segunda Clase',
         'cabinas': [
             {'tipo': 'A', 'valor': 20},
             {'tipo': 'B', 'valor': 20},
@@ -39,6 +41,7 @@ clases = [
     },
     {
         'clase': 3,
+        'descripcion': 'Tercera Clase',
         'cabinas': [
             {'tipo': 'A', 'valor': 20},
             {'tipo': 'B', 'valor': 20},
