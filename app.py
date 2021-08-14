@@ -16,37 +16,37 @@ clases = [
     {
         'clase': 1,
         'cabinas': [
-            {'tipo': 'A', 'valor': 20},
-            {'tipo': 'B', 'valor': 20},
-            {'tipo': 'C', 'valor': 20},
-            {'tipo': 'D', 'valor': 20},
-            {'tipo': 'E', 'valor': 20},
-            {'tipo': 'F', 'valor': 20},
-            {'tipo': 'G', 'valor': 20}
+            {'tipo': 'A', 'valor': 41.2443},
+            {'tipo': 'B', 'valor': 122.3831},
+            {'tipo': 'C', 'valor': 107.9266},
+            {'tipo': 'D', 'valor': 58.9191},
+            {'tipo': 'E', 'valor': 63.4647},
+            {'tipo': 'F', 'valor': '-'},
+            {'tipo': 'G', 'valor': '-'}
         ]
     },
     {
         'clase': 2,
         'cabinas': [
-            {'tipo': 'A', 'valor': 20},
-            {'tipo': 'B', 'valor': 20},
-            {'tipo': 'C', 'valor': 20},
-            {'tipo': 'D', 'valor': 20},
-            {'tipo': 'E', 'valor': 20},
-            {'tipo': 'F', 'valor': 20},
-            {'tipo': 'G', 'valor': 20}
+            {'tipo': 'A', 'valor': '-'},
+            {'tipo': 'B', 'valor': '-'},
+            {'tipo': 'C', 'valor': '-'},
+            {'tipo': 'D', 'valor': 13.5958},
+            {'tipo': 'E', 'valor': 11.5875},
+            {'tipo': 'F', 'valor': 23.4231},
+            {'tipo': 'G', 'valor': '-'}
         ]
     },
     {
         'clase': 3,
         'cabinas': [
-            {'tipo': 'A', 'valor': 20},
-            {'tipo': 'B', 'valor': 20},
-            {'tipo': 'C', 'valor': 20},
-            {'tipo': 'D', 'valor': 20},
-            {'tipo': 'E', 'valor': 20},
-            {'tipo': 'F', 'valor': 20},
-            {'tipo': 'G', 'valor': 20}
+            {'tipo': 'A', 'valor': '-'},
+            {'tipo': 'B', 'valor': '-'},
+            {'tipo': 'C', 'valor': '-'},
+            {'tipo': 'D', 'valor': '-'},
+            {'tipo': 'E', 'valor': 11.0000},
+            {'tipo': 'F', 'valor': 9.3958},
+            {'tipo': 'G', 'valor': 14.2050}
         ]
     }
 ]
