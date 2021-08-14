@@ -70,7 +70,7 @@ def predict():
 
     input = {
         'Age': request.args['Age'],
-        'Fare': request.args['Fare'],
+        'Fare': 0,
         'Parch': request.args['Parch'],
         'SibSp': request.args['SibSp'],
         'Embarked_Q': 0,
@@ -91,8 +91,8 @@ def predict():
         input.iloc[:, [0, 1, 2, 3]])
     input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked']]
     input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
-    input['Pclass_2'] = [1 if x == 'Segunda' else 0 for x in input['Class']]
-    input['Pclass_3'] = [1 if x == 'Tercera' else 0 for x in input['Class']]
+    input['Pclass_2'] = [1 if x == 2 else 0 for x in input['Class']]
+    input['Pclass_3'] = [1 if x == 3 else 0 for x in input['Class']]
     print(input)
     input.drop(['Embarked', 'Class'], axis=1, inplace=True)
 
