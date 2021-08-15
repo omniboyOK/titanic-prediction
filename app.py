@@ -3,10 +3,10 @@ import pandas as pd
 from flask import Flask, request, jsonify, render_template
 import pickle
 # modelo predictor
-with open('./models/titanic.pkl', 'rb') as modelo_pkl:
+with open('./models/titanic_v3.pkl', 'rb') as modelo_pkl:
     model = pickle.load(modelo_pkl)
 # scalador
-with open('./models/titanic_scaler.pkl', 'rb') as modelo_pkl:
+with open('./models/titanic_scaler_v3.pkl', 'rb') as modelo_pkl:
     model_scaler = pickle.load(modelo_pkl)
 
 app = Flask('app')
@@ -77,9 +77,12 @@ def predict():
         'Embarked_S': 0,
         'Pclass_2': 0,
         'Pclass_3': 0,
-        'Sex_male': request.args['Sex_male'],
+        'Sex_male': request.args['Sex_male'], 'cabin_category_A': 0,
+        'cabin_category_B': 0, 'cabin_category_C':0, 'cabin_category_D':0, 'cabin_category_E':0,
+        'cabin_category_F':0, 'cabin_category_G':0, 'cabin_category_n':0,
         'Embarked': request.args['Embarked'],
-        'Class': request.args['Class']
+        'Class': request.args['Class'],
+        'Cabin': request.args['Cabin']
     }
 
     input = pd.DataFrame.from_dict(input, orient='index').T
@@ -93,8 +96,13 @@ def predict():
     input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
     input['Pclass_2'] = [1 if x == 2 else 0 for x in input['Class']]
     input['Pclass_3'] = [1 if x == 3 else 0 for x in input['Class']]
+    cabin_description = 'cabin_category_' + input['Cabin']
+    print(cabin_description) #nombre de la cabina elegida
+    #if input['Cabin'] != 'A':
+    input[cabin_description] = 1
+
     print(input)
-    input.drop(['Embarked', 'Class'], axis=1, inplace=True)
+    input.drop(['Embarked', 'Class','Cabin','cabin_category_A'], axis=1, inplace=True)
 
     response = model.predict(input)
 
@@ -102,7 +110,7 @@ def predict():
 
     chance = model.predict_proba(input)
     # para añadir la probabilidad de supervivencia
-    print('Probabilidad de sobrevivir', round(chance[0][1]*100, 1) )
+    print('Probabilidad de sobrevivir', round(chance[0][1]*100, 1), '%' )
 
     percentile = round(chance[0][1]*100, 1)
 
@@ -137,8 +145,6 @@ def use_model():
         'Embarked': 'Q',
         'Class': 'Tercera'
     }
-    # request.args['Embarked'], no me toma esto cuando lo escribo :/
-    # request.args['Class'], pasa lo mismo que el caso anterior, de especificarlo no me lo toma
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
@@ -155,8 +161,6 @@ def use_model():
     input.drop(['Embarked', 'Class'], axis=1, inplace=True)
 
     response = model.predict(input)
-
-    # print('RESPUESTA', response[0], )
 
     chance = model.predict_proba(input)
     # para añadir la probabilidad de supervivencia
