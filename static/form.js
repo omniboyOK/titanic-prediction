@@ -70,9 +70,9 @@ function loadCabins() {
   if (clase) {
     clase.cabinas.forEach((cabina) => {
       if (cabina.valor > 0) {
-        let option = new Option(cabina.tipo, cabina.valor);
+        let option = new Option('Cabina ' + cabina.tipo, cabina.tipo);
         /// jquerify the DOM object 'o' so we can use the html method
-        $(option).html(cabina.tipo);
+        $(option).html('Cabina ' + cabina.tipo);
         $("#cabin").append(option);
       }
     });
