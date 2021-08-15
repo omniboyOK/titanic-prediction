@@ -104,16 +104,23 @@ def predict():
     # para añadir la probabilidad de supervivencia
     print('Probabilidad de sobrevivir', chance[0][1])
 
-    if response[0] == 1.0:
-        return jsonify({'result': 'Felicidades, sobrevivirias al Titanic', "survived": True})
-    else:
-        return jsonify({'result': 'Lo lamentamos, no hubieras sobrevivido al titanic', "survived": False})
+    percentile = chance[0][1]*100
+
+    survived = percentile > 50  # si es mayor a 50 es igual a True, y sino es False
+
+    return jsonify({
+        'result': survived and 'Felicidades, sobrevivirias al Titanic' or 'Lo lamentamos, no hubieras sobrevivido al titanic',
+        'survived': survived and True or False,
+        'percentile': percentile
+    })
 
 
 if __name__ == '__main__':
     app.run(debug=True)
 
-## for pure use of the model
+# for pure use of the model
+
+
 @app.route('/usemodel', methods=['GET'])
 def use_model():
 
@@ -127,11 +134,11 @@ def use_model():
         'Pclass_2': 0,
         'Pclass_3': 0,
         'Sex_male': 'M',
-        'Embarked': 'Q', 
-        'Class' : 'Tercera'
+        'Embarked': 'Q',
+        'Class': 'Tercera'
     }
     # request.args['Embarked'], no me toma esto cuando lo escribo :/
-    # request.args['Class'], pasa lo mismo que el caso anterior, de especificarlo no me lo toma 
+    # request.args['Class'], pasa lo mismo que el caso anterior, de especificarlo no me lo toma
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
@@ -140,19 +147,20 @@ def use_model():
     model_scaler.clip = False
     input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(
         input.iloc[:, [0, 1, 2, 3]])
-    input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked'] ]
-    input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked'] ]
-    input['Pclass_2'] = [1 if x == 'Segunda' else 0 for x in input['Class'] ]
-    input['Pclass_3'] = [1 if x == 'Tercera' else 0 for x in input['Class'] ]
+    input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked']]
+    input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
+    input['Pclass_2'] = [1 if x == 'Segunda' else 0 for x in input['Class']]
+    input['Pclass_3'] = [1 if x == 'Tercera' else 0 for x in input['Class']]
     print(input)
-    input.drop(['Embarked','Class'], axis=1, inplace = True)
+    input.drop(['Embarked', 'Class'], axis=1, inplace=True)
 
     response = model.predict(input)
 
     # print('RESPUESTA', response[0], )
 
-    chance = model.predict_proba( input )
-    print('Probabilidad de sobrevivir' , chance[0][1] ) #para añadir la probabilidad de supervivencia
+    chance = model.predict_proba(input)
+    # para añadir la probabilidad de supervivencia
+    print('Probabilidad de sobrevivir', chance[0][1])
 
     if response[0] == 1.0:
         return jsonify({'result': 'Felicidades, sobrevivirias al Titanic', "survived": True})
