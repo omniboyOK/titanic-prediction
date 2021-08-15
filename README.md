@@ -13,7 +13,7 @@ Data model algorithm to predict live/death success on the titanic, based on your
 
 Install dependencies
 
-`pip freeze > requirements.txt`
+`pip install -r requirements.txt`
 
 Run the Flask server
 
