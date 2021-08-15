@@ -38,6 +38,9 @@ $(document).ready(function () {
   fetch(`/classes`)
     .then((response) => response.json())
     .then((data) => {
+      // save clases
+      classes = data;
+
       data.forEach((item) => {
         let option = new Option(item.descripcion, item.clase);
         /// jquerify the DOM object 'o' so we can use the html method
@@ -45,6 +48,7 @@ $(document).ready(function () {
         $("#clase").append(option);
       });
       // enable dropdown
+      $("#clase").prop("disabled", false);
     })
     .catch((error) => {
       console.log("Failed to load classes", error);
@@ -54,8 +58,23 @@ $(document).ready(function () {
 });
 
 function loadCabins() {
-  console.log($("#clase").val());
+  let value = $("#clase").val();
+  let clase = classes.find((item) => item.clase == value);
+  $("#cabin").html('<option value="" selected></option>');
 
-  // set cabin dropdown to current selected class
   // if any class selected enable, if not disable
+  clase
+    ? $("#cabin").prop("disabled", false)
+    : $("#cabin").prop("disabled", true);
+
+  if (clase) {
+    clase.cabinas.forEach((cabina) => {
+      if (cabina.valor > 0) {
+        let option = new Option(cabina.tipo, cabina.valor);
+        /// jquerify the DOM object 'o' so we can use the html method
+        $(option).html(cabina.tipo);
+        $("#cabin").append(option);
+      }
+    });
+  }
 }
