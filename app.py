@@ -22,31 +22,31 @@ clases = [
             {'tipo': 'C', 'valor': 107.9266},
             {'tipo': 'D', 'valor': 58.9191},
             {'tipo': 'E', 'valor': 63.4647},
-            {'tipo': 'F', 'valor': '-'},
-            {'tipo': 'G', 'valor': '-'}
+            {'tipo': 'F', 'valor': 0},
+            {'tipo': 'G', 'valor': 0}
         ]
     },
     {
         'clase': 2,
         'descripcion': 'Segunda Clase',
         'cabinas': [
-            {'tipo': 'A', 'valor': '-'},
-            {'tipo': 'B', 'valor': '-'},
-            {'tipo': 'C', 'valor': '-'},
+            {'tipo': 'A', 'valor': 0},
+            {'tipo': 'B', 'valor': 0},
+            {'tipo': 'C', 'valor': 0},
             {'tipo': 'D', 'valor': 13.5958},
             {'tipo': 'E', 'valor': 11.5875},
             {'tipo': 'F', 'valor': 23.4231},
-            {'tipo': 'G', 'valor': '-'}
+            {'tipo': 'G', 'valor': 0}
         ]
     },
     {
         'clase': 3,
         'descripcion': 'Tercera Clase',
         'cabinas': [
-            {'tipo': 'A', 'valor': '-'},
-            {'tipo': 'B', 'valor': '-'},
-            {'tipo': 'C', 'valor': '-'},
-            {'tipo': 'D', 'valor': '-'},
+            {'tipo': 'A', 'valor': 0},
+            {'tipo': 'B', 'valor': 0},
+            {'tipo': 'C', 'valor': 0},
+            {'tipo': 'D', 'valor': 0},
             {'tipo': 'E', 'valor': 11.0000},
             {'tipo': 'F', 'valor': 9.3958},
             {'tipo': 'G', 'valor': 14.2050}
@@ -102,9 +102,9 @@ def predict():
 
     chance = model.predict_proba(input)
     # para añadir la probabilidad de supervivencia
-    print('Probabilidad de sobrevivir', chance[0][1])
+    print('Probabilidad de sobrevivir', round(chance[0][1]*100, 1) )
 
-    percentile = chance[0][1]*100
+    percentile = round(chance[0][1]*100, 1)
 
     survived = percentile > 50  # si es mayor a 50 es igual a True, y sino es False
 
