@@ -20,24 +20,24 @@
     <![endif]-->
 </head>
 
-<body class="bg-warning">
-    <main class="container pt-4 pb-4 bg-white rounded-bottom">
-        <div class="row justify-content-center mb-3">
+<body class="bg-warning bg-gradient">
+    <main class="container pt-4 pb-4 rounded-bottom">
+        <div class="row justify-content-center mb-3 p-3 rounded">
             <div class="col-lg-6 align-self-center">
-                <h1 class="mb-3">Bienvenido/a al Titanic!</h1>
-                <h3 class="mb-3">Ingresa tus datos</h3>
-                <form
+                <div>
+                    <h1 class="mb-3">Bienvenido/a al Titanic! 🚢</h1>
+                </div>
+                <form class="card p-2"
                     action="javascript:handleSubmit(age.value, parch.value, sibSp.value, sex_male.value, embarked.value, clase.value, cabin.value)">
+                    <h3 class="mb-3">Obtene tu boleto:</h3>
                     <div class="row">
                         <!-- First Form Column -->
                         <div class="col-lg-6">
                             <div class="form-group mb-2">
                                 <label for="age">Edad</label>
                                 <input type="number" class="form-control" id="age" aria-describedby="ageHelp"
-                                    placeholder="Ingresa tu edad" required>
-                                <small id="ageHelp" class="form-text text-muted">Ingresa la edad que tendrias al comprar
-                                    el
-                                    boleto</small>
+                                    placeholder="Ingresa tu edad" min="18" max="99" required>
+                                <small id="ageHelp" class="form-text text-muted">Ingresa tu edad</small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="parch">Padres/Hijos</label>
@@ -106,7 +106,7 @@
                 </form>
 
                 <!-- Result Section -->
-                <div class="card mt-3 mb-5 d-none text-white" id="cardresult">
+                <div class="card mt-3 mb-5 d-none" id="cardresult">
                     <div class="card-header">
                         El resultado de tu viaje fue...
                     </div>
@@ -127,10 +127,13 @@
     </main>
     <footer class="text-center footer bg-primary">
         <div class="container">
-            <span class="text-white align-middle">Formulario hecho por
-                <a href="https://github.com/omniboyOK">Omniboy</a> /
-                Modelo predictivo hecho por
-                <a href="https://github.com/Mattzvl">Mattzvl</a>
+            <span class="text-white align-middle">
+                <small>
+                    Formulario hecho por
+                    <a href="https://github.com/omniboyOK">Omniboy</a> /
+                    Modelo predictivo hecho por
+                    <a href="https://github.com/Mattzvl">Mattzvl</a>
+                </small>
             </span>
         </div>
     </footer>

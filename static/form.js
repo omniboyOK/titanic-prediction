@@ -13,19 +13,21 @@ function handleSubmit(age, parch, sibSp, sex_male, embarked, clase, cabin) {
       // remove loader
       loader.classList.add("d-none");
 
-      // show result card
+      // get result card
       let card = document.getElementById("cardresult");
-      // remove old styles
-      card.classList.remove("bg-success");
-      card.classList.remove("bg-danger");
-      card.classList.remove("d-none");
-      data.survived
-        ? card.classList.add("bg-success")
-        : card.classList.add("bg-danger");
+
+      // reset result card state
+      clearCard(card);
+
+      // set result card styles
+      data.survived ? setSuccessCard(card) : setFailureCard(card);
 
       // set result text
       let result_text = document.getElementById("result");
       result_text.innerText = data.result;
+
+      // show result card
+      card.classList.remove("d-none");
 
       window.scrollTo(0, document.querySelector(".container").scrollHeight);
     })
@@ -70,11 +72,30 @@ function loadCabins() {
   if (clase) {
     clase.cabinas.forEach((cabina) => {
       if (cabina.valor > 0) {
-        let option = new Option('Cabina ' + cabina.tipo, cabina.tipo);
+        let option = new Option("Cabina " + cabina.tipo, cabina.tipo);
         /// jquerify the DOM object 'o' so we can use the html method
-        $(option).html('Cabina ' + cabina.tipo);
+        $(option).html("Cabina " + cabina.tipo);
         $("#cabin").append(option);
       }
     });
   }
+}
+
+function setSuccessCard(card) {
+  card.classList.add("border-success");
+  card.classList.add("text-success");
+}
+
+function setFailureCard(card) {
+  card.classList.add("border-danger");
+  card.classList.add("text-danger");
+}
+
+function clearCard(card) {
+  // remove old styles
+  card.classList.remove("border-success");
+  card.classList.remove("border-danger");
+  card.classList.remove("text-success");
+  card.classList.remove("text-danger");
+  card.classList.add("d-none");
 }
