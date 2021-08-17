@@ -36,6 +36,42 @@ function handleSubmit(age, parch, sibSp, sex_male, embarked, clase, cabin) {
     });
 }
 
+function submitModel(age, parch, sibSp, sex_male, embarked, clase, cabin) {
+  // show loader
+  let loader = document.getElementById("loader");
+  loader.classList.remove("d-none");
+
+  fetch(
+    `/usemodel?Age=${age}&Parch=${parch}&SibSp=${sibSp}&Sex_male=${sex_male}&Embarked=${embarked}&Class=${clase}&Cabin=${cabin}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // remove loader
+      loader.classList.add("d-none");
+
+      // get result card
+      let card = document.getElementById("cardresult");
+
+      // reset result card state
+      clearCard(card);
+
+      // set result card styles
+      data.survived ? setSuccessCard(card) : setFailureCard(card);
+
+      // set result text
+      let result_text = document.getElementById("result");
+      result_text.innerText = data.result;
+
+      // show result card
+      card.classList.remove("d-none");
+
+      window.scrollTo(0, document.querySelector(".container").scrollHeight);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 $(document).ready(function () {
   fetch(`/classes`)
     .then((response) => response.json())

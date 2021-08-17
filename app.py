@@ -56,8 +56,12 @@ clases = [
 
 
 @app.route('/')
-def home():
+def homepage():
     return render_template("index.html", showPredictions=None)
+
+@app.route('/model')
+def modelpage():
+    return render_template("model.html", showPredictions=None)
 
 
 @app.route('/classes')
