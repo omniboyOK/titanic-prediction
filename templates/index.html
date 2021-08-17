@@ -11,7 +11,7 @@
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/index.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -25,7 +25,7 @@
         <div class="row justify-content-center mb-3 p-3 rounded">
             <div class="col-lg-6 align-self-center">
                 <div>
-                    <h1 class="mb-3">Bienvenido/a al Titanic! 🚢</h1>
+                    <h2 class="mb-3">Bienvenido/a al Titanic! 🚢</h2>
                 </div>
                 <form class="card p-2"
                     action="javascript:handleSubmit(age.value, parch.value, sibSp.value, sex_male.value, embarked.value, clase.value, cabin.value)">
@@ -92,10 +92,13 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="clase">Cabina</label>
-                                <div>
+                                <div class="input-group">
                                     <select class="select form-control" id="cabin" disabled required>
                                         <option value="" selected></option>
                                     </select>
+                                    <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Las cabinas disponibles se mostraran segun la clase en la que viajes"><i
+                                            class="bi bi-info-circle"></i></span>
                                 </div>
                                 <small id="cabinHelp" class="form-text text-muted">Selecciona tu cabina</small>
                             </div>
@@ -140,6 +143,8 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Popper (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- Custom scripts -->

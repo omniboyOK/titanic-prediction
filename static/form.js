@@ -73,6 +73,14 @@ function submitModel(age, parch, sibSp, sex_male, embarked, clase, cabin) {
 }
 
 $(document).ready(function () {
+  // Tooltip initialization
+  let tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
   fetch(`/classes`)
     .then((response) => response.json())
     .then((data) => {
