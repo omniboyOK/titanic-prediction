@@ -23,7 +23,8 @@ clases = [
             {'tipo': 'D', 'valor': 58.9191},
             {'tipo': 'E', 'valor': 63.4647},
             {'tipo': 'F', 'valor': 0},
-            {'tipo': 'G', 'valor': 0}
+            {'tipo': 'G', 'valor': 0},
+            {'tipo': 'n', 'valor': 70.2682}
         ]
     },
     {
@@ -36,7 +37,8 @@ clases = [
             {'tipo': 'D', 'valor': 13.5958},
             {'tipo': 'E', 'valor': 11.5875},
             {'tipo': 'F', 'valor': 23.4231},
-            {'tipo': 'G', 'valor': 0}
+            {'tipo': 'G', 'valor': 0},
+            {'tipo': 'n', 'valor': 21.3945}
         ]
     },
     {
@@ -49,7 +51,8 @@ clases = [
             {'tipo': 'D', 'valor': 0},
             {'tipo': 'E', 'valor': 11.0000},
             {'tipo': 'F', 'valor': 9.3958},
-            {'tipo': 'G', 'valor': 14.2050}
+            {'tipo': 'G', 'valor': 14.2050},
+            {'tipo': 'n', 'valor': 13.3515}
         ]
     }
 ]
