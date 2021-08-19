@@ -94,11 +94,6 @@ def predict():
 
     input = pd.DataFrame.from_dict(input, orient='index').T
 
-    # import joblib
-    from sklearn.preprocessing import MinMaxScaler
-    model_scaler.clip = False
-    input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(
-        input.iloc[:, [0, 1, 2, 3]])
     input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked']]
     input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
         
@@ -110,7 +105,12 @@ def predict():
         input['Pclass_' + str(clase_ini)] = 1 ##asignacion clase
         return dict_fare['valor']
     print(searching_fare(input['Class'][0], input['Cabin'][0] ))
-
+    
+    ### Aplico el escalador despues de haber asignado todos los valores y de devolver el valor de Fare
+    # import joblib
+    from sklearn.preprocessing import MinMaxScaler
+    model_scaler.clip = False
+    input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(input.iloc[:, [0, 1, 2, 3]])
     print('-------------------------------------------------')
     print(input)
     input.drop(['Embarked', 'Class','Cabin','cabin_category_A', 'Pclass_1'], axis=1, inplace=True)
