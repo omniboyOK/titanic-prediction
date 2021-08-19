@@ -78,7 +78,7 @@ def predict():
         'Parch': request.args['Parch'],
         'SibSp': request.args['SibSp'],
         'Embarked_Q': 0,
-        'Embarked_S': 0,
+        'Embarked_S': 0, 'Pclass_1': 0,
         'Pclass_2': 0,
         'Pclass_3': 0,
         'Sex_male': request.args['Sex_male'], 'cabin_category_A': 0,
@@ -98,15 +98,19 @@ def predict():
         input.iloc[:, [0, 1, 2, 3]])
     input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked']]
     input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
-    input['Pclass_2'] = [1 if x == 2 else 0 for x in input['Class']]
-    input['Pclass_3'] = [1 if x == 3 else 0 for x in input['Class']]
-    cabin_description = 'cabin_category_' + input['Cabin']
-    print(cabin_description) #nombre de la cabina elegida
-    #if input['Cabin'] != 'A':
-    input[cabin_description] = 1
+        
+    def searching_fare(clase_ini, cabin_ini):
+        dict_ini = next((item for item in clases if item['clase'] == int(clase_ini)), False)
+        dict_fare = next((item for item in dict_ini['cabinas'] if item['tipo'] == str(cabin_ini)), False)
+        input['Fare'] = dict_fare['valor'] ## asignacion de fare
+        input['cabin_category_' + cabin_ini] = 1 ## asignacion cabina
+        input['Pclass_' + str(clase_ini)] = 1 ##asignacion clase
+        return dict_fare['valor']
+    print(searching_fare(input['Class'][0], input['Cabin'][0] ))
 
+    print('-------------------------------------------------')
     print(input)
-    input.drop(['Embarked', 'Class','Cabin','cabin_category_A'], axis=1, inplace=True)
+    input.drop(['Embarked', 'Class','Cabin','cabin_category_A', 'Pclass_1'], axis=1, inplace=True)
 
     response = model.predict(input)
 
@@ -130,9 +134,10 @@ def predict():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# for pure use of the model
 
 
+###---------------------------------------------------------------------
+###for pure use of the model
 @app.route('/usemodel', methods=['GET'])
 def use_model():
 
