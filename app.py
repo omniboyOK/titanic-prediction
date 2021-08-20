@@ -62,6 +62,7 @@ clases = [
 def homepage():
     return render_template("index.html", showPredictions=None)
 
+
 @app.route('/model')
 def modelpage():
     return render_template("model.html", showPredictions=None)
@@ -85,8 +86,8 @@ def predict():
         'Pclass_2': 0,
         'Pclass_3': 0,
         'Sex_male': request.args['Sex_male'], 'cabin_category_A': 0,
-        'cabin_category_B': 0, 'cabin_category_C':0, 'cabin_category_D':0, 'cabin_category_E':0,
-        'cabin_category_F':0, 'cabin_category_G':0, 'cabin_category_n':0,
+        'cabin_category_B': 0, 'cabin_category_C': 0, 'cabin_category_D': 0, 'cabin_category_E': 0,
+        'cabin_category_F': 0, 'cabin_category_G': 0, 'cabin_category_n': 0,
         'Embarked': request.args['Embarked'],
         'Class': request.args['Class'],
         'Cabin': request.args['Cabin']
@@ -96,24 +97,28 @@ def predict():
 
     input['Embarked_Q'] = [1 if x == 'Q' else 0 for x in input['Embarked']]
     input['Embarked_S'] = [1 if x == 'S' else 0 for x in input['Embarked']]
-        
+
     def searching_fare(clase_ini, cabin_ini):
-        dict_ini = next((item for item in clases if item['clase'] == int(clase_ini)), False)
-        dict_fare = next((item for item in dict_ini['cabinas'] if item['tipo'] == str(cabin_ini)), False)
-        input['Fare'] = dict_fare['valor'] ## asignacion de fare
-        input['cabin_category_' + cabin_ini] = 1 ## asignacion cabina
-        input['Pclass_' + str(clase_ini)] = 1 ##asignacion clase
+        dict_ini = next(
+            (item for item in clases if item['clase'] == int(clase_ini)), False)
+        dict_fare = next(
+            (item for item in dict_ini['cabinas'] if item['tipo'] == str(cabin_ini)), False)
+        input['Fare'] = dict_fare['valor']  # asignacion de fare
+        input['cabin_category_' + cabin_ini] = 1  # asignacion cabina
+        input['Pclass_' + str(clase_ini)] = 1  # asignacion clase
         return dict_fare['valor']
-    print(searching_fare(input['Class'][0], input['Cabin'][0] ))
-    
-    ### Aplico el escalador despues de haber asignado todos los valores y de devolver el valor de Fare
+    print(searching_fare(input['Class'][0], input['Cabin'][0]))
+
+    # Aplico el escalador despues de haber asignado todos los valores y de devolver el valor de Fare
     # import joblib
     from sklearn.preprocessing import MinMaxScaler
     model_scaler.clip = False
-    input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(input.iloc[:, [0, 1, 2, 3]])
+    input.iloc[:, [0, 1, 2, 3]] = model_scaler.transform(
+        input.iloc[:, [0, 1, 2, 3]])
     print('-------------------------------------------------')
     print(input)
-    input.drop(['Embarked', 'Class','Cabin','cabin_category_A', 'Pclass_1'], axis=1, inplace=True)
+    input.drop(['Embarked', 'Class', 'Cabin', 'cabin_category_A',
+               'Pclass_1'], axis=1, inplace=True)
 
     response = model.predict(input)
 
@@ -121,14 +126,14 @@ def predict():
 
     chance = model.predict_proba(input)
     # para añadir la probabilidad de supervivencia
-    print('Probabilidad de sobrevivir', round(chance[0][1]*100, 1), '%' )
+    print('Probabilidad de sobrevivir', round(chance[0][1]*100, 1), '%')
 
     percentile = round(chance[0][1]*100, 1)
 
     survived = percentile > 50  # si es mayor a 50 es igual a True, y sino es False
 
     return jsonify({
-        'result': survived and 'Felicidades, sobrevivirias al Titanic' or 'Lo lamentamos, no hubieras sobrevivido al titanic',
+        'result': survived and 'Tu probabilidad de sobrevivir hubieran sido altas' or 'Lo lamentamos, tu probabilidad de sobrevivir es muy baja',
         'survived': survived and True or False,
         'percentile': percentile
     })
@@ -138,9 +143,8 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
-###---------------------------------------------------------------------
-###for pure use of the model
+# ---------------------------------------------------------------------
+# for pure use of the model
 @app.route('/usemodel', methods=['GET'])
 def use_model():
 

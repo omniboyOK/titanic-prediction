@@ -29,6 +29,44 @@ function handleSubmit(age, parch, sibSp, sex_male, embarked, clase, cabin) {
       // show result card
       card.classList.remove("d-none");
 
+      // Chart
+      let barColor = data.percentile >= 50 ? "#C2F784" : "#FF2626";
+
+      let chartContainer = document.getElementById("chart-container");
+
+      chartContainer.innerHTML = `<div class="h2" id="percentile"></div><canvas id="my-chart" width="250" height="250"></canvas>`;
+
+      let ctx = document.getElementById("my-chart").getContext("2d");
+
+      let doughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          datasets: [
+            {
+              label: "Probabilidad de supervivencia",
+              data: [data.percentile, 100 - data.percentile],
+              backgroundColor: [barColor, "rgb(255, 255, 255)"],
+              hoverOffset: 4,
+            },
+          ],
+          labels: ["", ""],
+        },
+        options: {
+          tooltips: { enabled: false },
+          hover: { mode: null },
+          borderRadius: 10,
+          cutout: "80%",
+          events: [],
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+
+      document.getElementById("percentile").innerText = data.percentile + "%";
+
       window.scrollTo(0, document.querySelector(".container").scrollHeight);
     })
     .catch((error) => {

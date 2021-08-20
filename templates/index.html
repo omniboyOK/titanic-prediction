@@ -110,11 +110,22 @@
 
                 <!-- Result Section -->
                 <div class="card mt-3 mb-5 d-none" id="cardresult">
+
                     <div class="card-header">
                         El resultado de tu viaje fue...
                     </div>
                     <div class="card-body">
-                        <h2 id="result"></h2>
+                        <div class="row text-center d-flex align-items-center">
+                            <div class="col" style="align-content: center;">
+                                <h2 id="result"></h2>
+                            </div>
+                            <div class="col" style="width: 300px; height: 300px; float: left; position: relative;"
+                                id="chart-container">
+                                <div class="h2" id="percentile">
+                                </div>
+                                <canvas id="my-chart" width="250" height="250"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row justify-content-center m-4 d-none" id="loader">
@@ -142,6 +153,7 @@
     </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Popper (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
