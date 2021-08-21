@@ -27,6 +27,13 @@
                 <div>
                     <h2 class="mb-3">Bienvenido/a al Titanic! 🚢</h2>
                 </div>
+                <div class="alert alert-primary" role="alert">
+                    Este proyecto fue realizado a partir de la información de más de 1300 pasajes del viaje
+                    transatlántico más famoso de la historia.
+                    <br>
+                    Se desarrollo un modelo predictivo que calcula tus probabilidades de sobrevivir según como armes tu
+                    boleto.
+                </div>
                 <form class="card p-2"
                     action="javascript:handleSubmit(age.value, parch.value, sibSp.value, sex_male.value, embarked.value, clase.value, cabin.value)">
                     <h3 class="mb-3">Obtene tu boleto:</h3>
@@ -70,22 +77,28 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="embarked">Puerto de Embarco</label>
-                                <div>
+                                <div class="input-group">
                                     <select class="select form-control" id="embarked">
                                         <option value="C" selected>Cherbourg</option>
                                         <option value="S">Queenstown</option>
                                         <option value="Q">Southampton</option>
                                     </select>
+                                    <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="El primer embarco sera desde Southampton (Inglaterra), luego Cherburgo (Francia), y antes de emprender el viaje embarcará en Queenstown (actual Cobh) en Irlanda."><i
+                                            class="bi bi-info-circle"></i></span>
                                 </div>
                                 <small id="embarkedHelp" class="form-text text-muted">Selecciona el puerto de
                                     Embarco</small>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="clase">Clase</label>
-                                <div>
+                                <div class="input-group">
                                     <select class="select form-control" id="clase" disabled required>
                                         <option value="" selected></option>
                                     </select>
+                                    <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Primera clase cuenta con una amplia gama de amenities; segunda clase cuenta con algunas, y tercera clase solo cuenta con acceso a áreas comunes"><i
+                                            class="bi bi-info-circle"></i></span>
                                 </div>
                                 <small id="claseHelp" class="form-text text-muted">Selecciona la categoria del
                                     viaje</small>
@@ -110,7 +123,6 @@
 
                 <!-- Result Section -->
                 <div class="card mt-3 mb-5 d-none" id="cardresult">
-
                     <div class="card-header">
                         El resultado de tu viaje fue...
                     </div>
@@ -125,6 +137,10 @@
                                 </div>
                                 <canvas id="my-chart" width="250" height="250"></canvas>
                             </div>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            Ten en cuenta que el resultado esta compuesto por un analisis de muchos
+                            factores.Todos los datos ingresados fueron determinantes!
                         </div>
                     </div>
                 </div>
