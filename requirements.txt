@@ -62,7 +62,7 @@ threadpoolctl==2.2.0
 toml==0.10.2
 typing-extensions==3.7.4.3
 urllib3==1.26.3
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 wrapt==1.12.1
 yapf==0.30.0
 yarl==1.6.3
